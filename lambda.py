@@ -143,7 +143,7 @@ def assign_ticket_to_agent(issue_key, agent_account_id):
         logger.error(f"Failed to assign ticket. Status code: {response.status_code}, Response: {response.text}")
         return False
 
-# Function to extract customfield_11103 information from the issue data
+# Function to extract Jira Asset customfield_11103 information from the issue data
 def extract_customfield_11103_information(issue_data):
     if issue_data:
         issue_key = issue_data['key']
