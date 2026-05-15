@@ -81,8 +81,6 @@ def get_region_obj(workspace_id, object_id):
         logger.error(f"Failed to retrieve object. Status Code: {response.status_code}, Response: {response.text}")
         return None
     
-# Define at the top of your file with your other imports and constants
-# Jira Assets attribute with User Type has objectTypeAttributeId of 762
 # Function to retrieve the Sales Support Agent for the region using the Region ID
 def get_sales_support_agent(region_id, workspace_id):
     url = f"https://api.atlassian.com/jsm/assets/workspace/{workspace_id}/v1/object/{region_id}"
@@ -175,11 +173,11 @@ def extract_customfield_11103_information(issue_data):
 
                 # Loop through attributes to find RegionName and RegionObj
                 for attribute in attributes:
-                    if attribute['objectTypeAttributeId'] == '637':
+                    if attribute['objectTypeAttributeId'] == '637': #Atribute ID will differ based on your setup, this is just an example
                         region_name = attribute['objectAttributeValues'][0].get('value', 'Unknown')
                         logger.info(f"Found Region Name: {region_name}")
                     
-                    if attribute['objectTypeAttributeId'] == '641':
+                    if attribute['objectTypeAttributeId'] == '641': #Atribute ID will differ based on your setup, this is just an example
                         referenced_object = attribute['objectAttributeValues'][0].get('referencedObject', {})
                         region_id = referenced_object.get('id', 'Unknown')
                         logger.info(f"Found Region ID: {region_id}")
