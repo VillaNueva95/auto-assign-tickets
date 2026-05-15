@@ -28,7 +28,7 @@ def get_secret(secret_name):
         raise
 
 # Extract credentials from secrets
-secrets = get_secret('/auto_assign_salessupport/config_values/updated')
+secrets = get_secret('your-secret-name-here')  # Replace with your actual secret name
 JIRA_API_TOKEN = secrets.get('JIRA_API_TOKEN')
 JIRA_BASE_URL = secrets.get('JIRA_BASE_URL')
 JIRA_API_USER_EMAIL = secrets.get('JIRA_API_USER_EMAIL')
@@ -80,7 +80,9 @@ def get_region_obj(workspace_id, object_id):
     else:
         logger.error(f"Failed to retrieve object. Status Code: {response.status_code}, Response: {response.text}")
         return None
-
+    
+# Define at the top of your file with your other imports and constants
+# Jira Assets attribute with User Type has objectTypeAttributeId of 762
 # Function to retrieve the Sales Support Agent for the region using the Region ID
 def get_sales_support_agent(region_id, workspace_id):
     url = f"https://api.atlassian.com/jsm/assets/workspace/{workspace_id}/v1/object/{region_id}"
